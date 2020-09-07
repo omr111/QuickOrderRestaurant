@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@using QuickOrder.Entities.Entities.EntityFramework
+@using PagedList
+@using PagedList.Mvc
+@using QuickOrder.WebMVC.Models
+@model productModel
+    
+<section class="home-icon blog-main-section shop-page">
+    <div class="icon-default">
+        <img src="~/content/staticImages/scroll-arrow.png" alt="">
+    </div>
+    <div class="container">
+        <div class="menu-wrapper">
+            <div class="portfolioFilter">
+                <div class="portfolioFilter-inner">
+                    <a href="javascript:;" data-filter="*" class="current">Tümü</a>
+                    @foreach (var category in Model.categories)
+                    {
+                        <a href="javascript:;" data-filter=".@category.categoryName">@category.categoryName</a>
+                    }
+
+
+                </div>
+            </div>
+            <div class="portfolioContainer row">
+                @foreach (var product in Model.products)
+                {
+                    <div class="col-md-3 col-sm-4 col-xs-12  @product.Categories.categoryName " data-wow-duration="1000ms" data-wow-delay="300ms">
+                        <div class="shop-main-list">
+                            <div class="shop-product">
+                                <img src="@product.coverPicturePath" alt="@product.name" style="border-radius:40px!important">
+                                <div class="cart-overlay-wrap">
+                                    <div class="cart-overlay">
+                                        <a href="javascript:void(0)" data-id="@product.id" class="shop-cart-btn">Sepete Ekle</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#"><h5>@product.name</h5></a>
+                            <h5><strong>$ @product.price</strong></h5>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="gallery-pagination">
+        <div class="gallery-pagination-inner">
+            @Html.PagedListPager((IPagedList)Model.products, page => Url.Action("Index", new { page }))
+
+        </div>
+    </div>
+
+</section>
+<script src="~/content/js/jquery.min.js"></script>
+<script>
+    $('.pagination').removeClass('pagination');
+
+
+    $('.PagedList-skipToPrevious').removeClass('PagedList-skipToPrevious').addClass('testPre');
+    $('.testPre>a').addClass('pagination-prev');
+    $('.pagination-prev').html('');
+    $('.pagination-prev').append('<i class="fa fa-arrow-left" aria-hidden="true"></i><span>PREV page</span>');
+
+    $('.PagedList-skipToNext').removeClass('PagedList-skipToPrevious').addClass('testNext');
+    $('.testNext>a').addClass('pagination-next');
+    $('.pagination-next').html('');
+    $('.pagination-next').append('<span>Next page</span><i class="fa fa-arrow-right" aria-hidden="true"></i>');
+</script>
+
+<script>
+    $(".shop-cart-btn").click(function () {
+        var id = $(this).data("id");
+        $.ajax({
+            url: "/basket/addBasket",
+            type: "GET",
+            data: { id: id },
+            success: function myfunction() {
+                alert("Success");
+                $.ajax({
+                    type:"GET",
+                    url: "/basket/basket",
+                    success: function myfunction(newPro) {
+                       
+                        $(".allCart").html('');
+                        $(".allCart").html(newPro);
+
+                    }
+                });
+            },
+            error: function myfunction() {
+                alert("Failed");
+            }
+        });
+
+    });
+</script>

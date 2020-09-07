@@ -1,0 +1,65 @@
+﻿@using QuickOrder.WebMVC.Models
+@model mainPageFoodMenuModel
+<section class="special-menu bg-skeen home-icon wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+    <div class="icon-default icon-skeen">
+        <img src="/content/staticImages/icon6.png" alt="">
+    </div>
+    <div class="container">
+        <div class="build-title">
+            <h2>Our Special Menu</h2>
+        </div>
+        <div class="menu-wrapper">
+            <div class="portfolioFilter">
+                <div class="portfolioFilter-inner">
+                    <a href="javascript:;" data-filter="*" class="current">All</a>
+                    @foreach (var category in Model.categories)
+                    {
+                        <a href="javascript:;" data-filter=".@category.categoryName">@category.categoryName</a>
+                    }
+
+
+                </div>
+            </div>
+            <div class="portfolioContainer row">
+                @foreach (var product in Model.products)
+                {
+
+                    <div class="col-md-6 col-sm-6 col-xs-12 isotope-item @product.Categories.categoryName">
+                        <a href="/product/productDetail/@product.id">
+
+                            <div class="menu-list">
+                                <span class="menu-list-product">
+
+                                    <img src="@product.coverPicturePath" alt="@product.name" width="104" height="104" style="border-radius:50px!important">
+                                </span>
+                                <h5>@product.name <span>$ @product.price</span></h5>
+                                <p style="color:#7A7676">@product.caption</p>
+
+                            </div>
+                        </a>
+                    </div>
+
+                }
+
+
+            </div>
+            <div class="btn-outer">
+                <a href="/product/Index" class="btn-main btn-shadow">Tüm Menü'yü Keşfet.</a>
+            </div>
+        </div>
+    </div>
+    <div class="float-main">
+        <div class="icon-top-left">
+            <img src="/content/staticImages/icon7.png" alt="">
+        </div>
+        <div class="icon-bottom-left">
+            <img src="/content/staticImages/icon8.png" alt="">
+        </div>
+        <div class="icon-top-right">
+            <img src="/content/staticImages/icon9.png" alt="">
+        </div>
+        <div class="icon-bottom-right">
+            <img src="/content/staticImages/icon10.png" alt="">
+        </div>
+    </div>
+</section>

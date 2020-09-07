@@ -1,0 +1,16 @@
+﻿@using QuickOrder.WebMVC.Models
+@model homeModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@Html.Partial("_aboutPartial",Model.about)
+
+@Html.Partial("_mainPageSlider",Model.products)
+@Html.Partial("_mainPageFoodMenu", Model.mainPageFood)
+
+@Html.Partial("_foodHours")
+@Html.Partial("_featureList", Model.services)
+@Html.Partial("_clientSays",Model.customerReviews)
+@Html.Partial("_gallery", Model.products)
+

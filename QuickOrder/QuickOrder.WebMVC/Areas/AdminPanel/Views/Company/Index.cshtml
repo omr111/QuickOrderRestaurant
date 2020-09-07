@@ -1,0 +1,282 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_adminLayout.cshtml";
+}
+@model QuickOrder.Entities.Entities.EntityFramework.CompanyInformations
+<div id="alertNumber"></div>
+
+
+<form action="/AdminPanel/Company/companyEdit" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+   
+    <div class="content mt-3">
+        <div style="margin-left:50px">
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        </div>
+        <div class="animated fadeIn">
+           @Html.HiddenFor(x=>x.id)
+            <div class="row">
+
+                <div class="col-xs-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>@Model.companyName</strong>
+                        </div>
+
+                        <div class="card-body card-block">
+                            <div class="form-group">
+                                <label class=" form-control-label">Firma Adı</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-building"></i></div>
+                                    <input type="text" name="companyName" class="form-control" value="@Model.companyName">
+                                </div>
+                                @Html.ValidationMessageFor(m => m.companyName, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label"><i class="fa fa-info-circle"></i> Slogan</label>
+                                <div class="input-group">
+
+                                    <input style="overflow: scroll;" type="text" name="companyCaption" class="form-control" maxlength="250" value="@Model.companyCaption" />
+                                </div>
+                                @Html.ValidationMessageFor(m => m.companyCaption, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label"><i class="fa fa-info-circle"></i> Hakkımızda</label>
+                                <div class="input-group">
+
+                                    <textarea id="ckEditor" style="overflow: scroll;" type="text" name="companyAbout" class="form-control" rows="10">@Html.Raw(Model.companyAbout)</textarea>
+                                </div>
+                                @Html.ValidationMessageFor(m => m.companyAbout, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label"><i class="fa fa-youtube"></i> Youtube Link</label>
+                                <div class="input-group">
+
+                                    <input type="text" name="youtubeUrl" class="form-control" value="@Model.youtubeUrl" />
+                                </div>
+                                @Html.ValidationMessageFor(m => m.youtubeUrl, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label"><i class="fa fa-instagram"></i> Instagram Link</label>
+                                <div class="input-group">
+
+                                    <input type="text" name="InstagramUrl" class="form-control" value="@Model.InstagramUrl" />
+                                </div>
+                                @Html.ValidationMessageFor(m => m.InstagramUrl, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label"><i class="fa fa-twitter"></i> Twitter Link</label>
+                                <div class="input-group">
+
+                                    <input type="text" name="twitterUrl" class="form-control" value="@Model.twitterUrl" />
+                                </div>
+                                @Html.ValidationMessageFor(m => m.twitterUrl, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label"><i class="fa fa-facebook"></i> Facebook Link</label>
+                                <div class="input-group">
+
+                                    <input type="text" name="facebookUrl" class="form-control" value="@Model.facebookUrl" />
+                                </div>
+                                @Html.ValidationMessageFor(m => m.facebookUrl, "", new { @style = "color:red" })
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>@Model.companyName</strong>
+                        </div>
+
+                        <div class="card-body card-block">
+                            <div class="form-group">
+                                <label class=" form-control-label">Telefon</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+
+
+                                    <input style="margin-left: 10px; margin-top: 4px" list="browsers" id="selectedPhone" name="browser">
+                                    <datalist id="browsers">
+                                        @foreach (var phone in @Model.Phones)
+                                        {
+                                            <option value="@phone.phoneNumber"></option>
+
+                                        }
+
+                                    </datalist>
+                                    <a style=" margin-left: 5px" class="btn btn-success numSave" data-id="@Model.id"><i class="fa fa-plus" title="Telefon Ekle"></i></a>
+                                    <a style="margin-left: 5px" class="btn btn-danger numDelete" data-id="@Model.id"><i class="fa fa-trash" title="Telefon Sil"></i></a>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label">Email</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+
+                                    <input type="email" name="email" placeholder="Enter your email address..." maxlength="70" class="form-control" value="@Model.email" />
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.email, "", new { @style = "color:red" })
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class=" form-control-label">Adres</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-address-card-o"></i></div>
+                                    <input type="text" name="companyAddress" class="form-control " maxlength="250" required="required" value="@Model.companyAddress" placeholder="Adresinizi Giriniz..." />
+                                </div>
+                                @Html.ValidationMessageFor(m => m.companyAddress, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label">Şirket Logo</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-picture-o"></i></div>
+                                    <input type="file" name="companyLogo" class="form-control ">
+                                </div>
+                                @Html.ValidationMessageFor(m => m.companyLogo, "", new { @style = "color:red" })
+                            </div>
+
+                            <div class="form-group">
+                                <label class=" form-control-label">Resim</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-file"></i></div>
+                                    <input class="form-control" type="file" name="companyPicturePath">
+                                </div>
+                                @Html.ValidationMessageFor(m => m.companyPicturePath, "", new { @style = "color:red" })
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <input name="id" type="submit" class="btn btn-success" style="float: right" value="Güncelle" />
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div><!--row end-->
+        </div><!-- .animated -->
+    </div>
+
+
+</form>
+
+@section js{
+    <!--Numara Kayıt Etme-->
+    <script type="text/javascript">
+       
+       function failOk(msg) {
+           var okFail = '<div class="col-sm-12">';
+           okFail += '<div class="alert  alert-danger alert-dismissible fade show" role="alert">';
+           okFail += ' <span class="badge badge-pill badge-success">Error</span>' + msg;
+           okFail += ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+           okFail += '<span aria-hidden="true">&times;</span>';
+           okFail += '</button>';
+           okFail += '</div>';
+           okFail += ' </div>';
+           return okFail;
+       }
+       function ok(msg) {
+           var ok = '<div class="col-sm-12">';
+           ok += '<div class="alert  alert-success alert-dismissible fade show" role="alert">';
+           ok += ' <span class="badge badge-pill badge-success">Success</span>' + msg;
+           ok += ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+           ok += '<span aria-hidden="true">&times;</span>';
+           ok += '</button>';
+           ok += '</div>';
+           ok += ' </div>';
+           return ok;
+       }
+        $(".numSave").click(function () {
+            var selectedPhone = $("#selectedPhone").val();
+            var companyId = $(this).data("id");
+    
+
+            $.ajax({
+                url: "/AdminPanel/Company/phoneAdd",
+                type: "POST",
+                data: {selectedPhone:selectedPhone,companyId:companyId},
+                success: function (data) {
+
+                    if (data != "") {
+                        var newElement = new Option(data);
+                        $("#browsers").append(newElement);
+                        $("#selectedPhone").val("");
+                        msg = "The phone has been added successfully";
+                        $("#alertNumber").html(ok(msg));
+                        setTimeout(function () { $('#alertNumber').hide('slow'); }, 5000);
+                    }
+                    else {
+                        var msg = "An error occurred while adding phone!";
+                        $("#alertNumber").html(failOk(msg));
+                       
+                        setTimeout(function () { $('#numaraUyari').hide('slow'); }, 5000);
+                    }
+                },
+                error: function () {
+                   var msg = "An error occurred while adding phone!";
+                    $("#alertNumber").html(failOk(msg));
+
+                    setTimeout(function () { $('#alertNumber').hide('slow'); }, 5000);
+                }
+            });
+
+
+        });
+
+    </script>
+    <!--Numara Silme-->
+    <script type="text/javascript">
+        $(".numDelete").click(function () {
+            var companyId = $(this).data("id");
+            var selectedPhone = $("#selectedPhone").val();
+         
+            $.ajax({
+                url: "/AdminPanel/Company/phoneDelete",
+                type: "POST",
+                data: { selectedPhone: selectedPhone, companyId: companyId },
+                success: function (data) {
+
+                    if (data != null ) {
+                       var msg = "The phone has been deleted successfully !";
+                      
+                        document.location.replace("/AdminPanel/Company/Index");
+                        
+
+                        $("#alertNumber").html(ok(msg));
+                        setTimeout(function () { $('#alertNumber').hide('slow'); }, 5000);
+                    }
+                    else {
+                       var msg = "An error occurred while deleting phone!";
+                        $("#alertNumber").html(failOk(msg));
+                        
+                        setTimeout(function () { $('#alertNumber').hide('slow'); }, 5000);
+                    }
+                },
+                error: function (data) {
+                  var  msg = "An error occurred while deleting phone!";
+                    $("#alertNumber").html(failOk(msg));
+                    setTimeout(function () { $('#alertNumber').hide('slow'); }, 5000);
+                }
+            });
+
+
+        });
+    </script>
+    <script type="text/javascript">
+        var editor = CKEDITOR.instances['ckEditor'];
+        if (editor) {
+            editor.destroy(true);
+
+        }
+        CKEDITOR.replace('ckEditor', { entermode: CKEDITOR.ENTER_BR });
+        
+    </script>
+   
+}

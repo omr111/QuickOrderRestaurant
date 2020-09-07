@@ -1,0 +1,27 @@
+﻿@using QuickOrder.Entities.Entities.EntityFramework
+
+@model List<Products>
+<section class="dishes banner-bg invert invert-black home-icon wow fadeInDown" data-background="/content/staticImages/banner1.jpg" data-wow-duration="1000ms" data-wow-delay="300ms">
+    <div class="icon-default icon-black">
+        <img src="/content/staticImages/icon5.png" alt="">
+    </div>
+    <div class="container">
+        <div class="build-title">
+            <h2> QuickOrder Restaurant'a Hoş Geldiniz.</h2>
+        </div>
+        <div class="slider multiple-items">
+            @foreach (Products pro in Model)
+            {
+                <div class="product-blog">
+                    <a href="/product/productDetail/@pro.id">
+                        <img src="@pro.coverPicturePath" alt="@pro.name" width="360" style="border-radius:150px!important">
+                        <h3>@pro.name</h3>
+                        <p style="color:#E2DADD">@pro.description</p>
+                    </a>
+                    <strong class="txt-default">$ @pro.price</strong>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

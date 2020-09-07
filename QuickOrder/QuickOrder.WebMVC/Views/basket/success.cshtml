@@ -1,0 +1,27 @@
+﻿@model Guid
+@{
+    ViewBag.Title = "Siparişiniz Başarılı";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<section class="home-icon shop-cart bg-skeen wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+    <div class="icon-default icon-skeen">
+        <img src="images/scroll-arrow.png" alt="">
+    </div>
+    <div class="container">
+        <div class="checkout-wrap">
+            <ul class="checkout-bar">
+                <li class="done-proceed">Sepet</li>
+                <li class="done-proceed">Sipariş Kontrol</li>
+                <li class="active done-proceed">Sipariş Tamamla</li>
+            </ul>
+        </div>
+        <div class="order-complete-box">
+            <img src="~/content/staticImages/complete-sign.png" alt="">
+            <p>
+                Bizi Seçtiğiniz İçin Teşekkür Ederiz.<br /><h3>Sipariş Kodunuz: <b> @Model.ToString()</b></h3>
+                <br> Siparişiniz Belirttiğiniz Tarih ve Saatte Hazır Olacaktır.
+            </p>
+            <a href="/Home/Index" class="btn-medium btn-primary-gold btn-large">Diğer Ürünleri Keşfet.</a>
+        </div>
+    </div>
+</section>

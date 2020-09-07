@@ -1,0 +1,12 @@
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.Entities\bin\Debug\QuickOrder.Entities.dll
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.Entities\bin\Debug\QuickOrder.Entities.pdb
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.Entities\obj\Debug\QuickOrder.Entities.csprojAssemblyReference.cache
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.Entities\obj\Debug\QuickOrder.Entities.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.Entities\obj\Debug\QuickOrder.Entities.dll
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.Entities\obj\Debug\QuickOrder.Entities.pdb
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.Entities\bin\Debug\QuickOrder.Entities.dll.config
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.Entities\bin\Debug\EntityFramework.dll
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.Entities\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.Entities\bin\Debug\EntityFramework.xml
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.Entities\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.Entities\obj\Debug\QuickOrder.Entities.csproj.CopyComplete

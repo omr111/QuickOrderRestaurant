@@ -1,0 +1,91 @@
+﻿@using QuickOrder.WebMVC.App_Classes
+@model card
+
+@{
+    ViewBag.Title = "checkout";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<section class="home-icon shop-cart bg-skeen">
+    <div class="icon-default icon-skeen">
+        <img src="images/scroll-arrow.png" alt="">
+    </div>
+    <div class="container">
+        <div class="checkout-wrap wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <ul class="checkout-bar">
+                <li class="done-proceed">Sepet</li>
+                <li class="active">Ödemeye Git</li>
+                <li>Siparişi Tamamla</li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <div class="shop-checkout-left">
+                    <h6>Eğer üye iseniz buradan <a href="/user/login">giriş</a>yapın</h6>
+                    <form class="form-checkout" name="form" method="post" action="/basket/checkout">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <h5>Fatura Detay</h5>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <input type="text" name="name" required maxlength="50" placeholder="İsim">
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <input type="text" name="surname" maxlength="50" required placeholder="Soy isim">
+                            </div>
+
+
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <input type="text" name="phone" maxlength="12" placeholder="Telefon">
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="datetime-local" name="orderDate" placeholder="Tarih ve Saat Girin" title="Tarih ve Saat Girin">
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <textarea name="description" maxlength="250" placeholder="Siparişe Not Ekleyin"></textarea>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-5 col-xs-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <div class="shop-checkout-right">
+                    <div class="shop-checkout-box">
+                        <h5>Siparişiniz</h5>
+                        <div class="shop-checkout-title">
+                            <h6><span>Toplam</span> Ürün</h6>
+                        </div>
+                        <div class="shop-checkout-row">
+                            @foreach (var item in Model.BasketItems)
+                            {
+                                <p><span>@item.products.name</span> @item.count x  <small>$ @(item.products.price * item.count)</small></p>
+                            }
+
+                        </div>
+                        
+                        <div class="checkout-total">
+                            <h6>Vergi <small>% 18</small></h6>
+                        </div>
+                     
+                        <div class="checkout-total">
+                            <h6>Sipariş Tutarı <small class="price-big">$@Model.cardTotalPrice</small></h6>
+                        </div>
+                    </div>
+                    <div class="shop-checkout-box">
+                        <h5>Ödeme Türü</h5>                           
+                                 <select name="payType" class="form-control">
+                                     <option value="Nakit Ödeme">Nakit Ödeme</option>
+                                     <option value="Kredi Kartı">Kredi Kartı</option>
+                                 </select><br />                            
+                        <div class="checkout-button">
+                            <button class="button-default btn-large btn-primary-gold" type="submit">Alışverişi Tamamla</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</section>

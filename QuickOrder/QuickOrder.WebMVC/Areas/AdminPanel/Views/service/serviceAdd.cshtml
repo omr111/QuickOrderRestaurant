@@ -1,0 +1,77 @@
+﻿@model QuickOrder.Entities.Entities.EntityFramework.services
+@{
+    ViewBag.Title = "serviceAdd";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_adminLayout.cshtml";
+}
+@using (Html.BeginForm("serviceAdd", "service", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <!-- content-->
+
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Hizmet Ekle</strong>
+                        </div>
+                        <div class="card-body card-block">
+                            <div class="form-group">
+                                <label class=" form-control-label">Service Title</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa icofont-fast-food"></i></div>
+                                
+                                    @Html.TextBoxFor(m => m.serviceName, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(m=>m.serviceName,"",new {@style="color:red"})
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label">Hizmet Tanımı</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-audio-description"></i></div>
+                                    @Html.TextAreaFor(m => m.serviceInfo, new { @class = "form-control" })
+                                   
+                                 
+                                </div>
+                                @Html.ValidationMessageFor(m=>m.serviceInfo,"",new{@style="color:red"})
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-body card-block">
+                           
+
+                            <div class="form-group">
+                                <label class=" form-control-label">Icon</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-file"></i></div>
+                              
+                                    <input type="file" class="form-control" name="file"/>
+                                </div>
+                                @Html.ValidationMessageFor(m=>m.serviceIcon,"",new {@style="color:red"})
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <input type="submit" value="Ekle" class="btn btn-success" style="float: right" />
+                             
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div><!--row end-->
+        </div><!-- .animated -->
+    </div>
+    <!-- .content -->
+
+
+}

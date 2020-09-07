@@ -1,0 +1,76 @@
+﻿@using QuickOrder.Entities.Entities.EntityFramework
+@model List<Categories>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Kategori Ekle</strong>
+                    </div>
+                    <div class="card-body card-block">
+                        <form action="/AdminPanel/Categories/categoryAdd" method="post">
+                            <div class="form-group">
+                                <label class=" form-control-label">Kategori Ekle</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-life-saver"></i></div>
+                                    <input type="text" name="categoryName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <input type="submit" value="Add" class="btn btn-success" style="float: right" />
+
+                            </div>
+                        </form>
+                    </div>
+                    
+                    
+
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Kategori Sil</strong>
+                    </div>
+                    <div class="card-body card-block">
+                        <form action="/AdminPanel/Categories/categoryDelete" method="post">
+                            <div class="form-group">
+                                <label class=" form-control-label">Ürünün Kategorisi</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-life-saver"></i></div>
+
+                                    <select class="form-control selectCat" name="id">
+                                        <option></option>
+                                        @foreach (Categories cat in @Model)
+                                        {
+                                            <option value="@cat.id">@cat.categoryName</option>
+                                             
+                                        }
+                                       
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Sil" class="btn btn-success deleteCat " style="float: right" />
+
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div><!--row end-->
+    </div><!-- .animated -->
+</div>
+
+
+

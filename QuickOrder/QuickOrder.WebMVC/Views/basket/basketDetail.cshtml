@@ -1,0 +1,76 @@
+﻿@using QuickOrder.WebMVC.App_Classes
+@model card
+@{
+    ViewBag.Title = "basketDetail";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<section class="home-icon shop-cart bg-skeen detailAll">
+    @Html.Partial("_basketDetail", Model)
+</section>
+<!--countIncrease-->
+<script>
+    $(document).ready(function () {
+      
+        $(".plus-text").click(function () {
+           
+            var id = $(this).data("id");
+            $.ajax({
+                url: "/basket/countIncrease/",
+                
+                data: { id: id },
+                type: "GET",
+                success: function () {
+                    document.location.reload();
+                
+                },
+                error: function myfunction() {
+                    alert("Error! Try again");
+
+                }
+            });
+        });
+        $(".shop-cart-close").click(function () {
+
+            var id = $(this).data("id");
+           
+            $.ajax({
+                url: "/basket/deleteFromDetail/",
+
+                data: { id: id },
+                type: "GET",
+                success: function () {
+                    document.location.reload();
+               
+
+
+                },
+                error: function myfunction() {
+                    alert("Error! Try again");
+
+                }
+            });
+        });
+    });
+</script>
+
+<!--countDecrease-->
+<script>
+    $(document).ready(function () {
+        $(".minus-text").click(function () {
+            var id = $(this).data("id");
+            $.ajax({
+                url: "/basket/countDecrease/",
+                cache: false,
+                data: { id: id },
+                type: "GET",
+                success: function () {
+                    document.location.reload();
+                },
+                error: function myfunction() {
+                    alert("Error! Try again");
+
+                }
+            });
+        });
+    });
+</script>

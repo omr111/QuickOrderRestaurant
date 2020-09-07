@@ -1,0 +1,37 @@
+﻿@using QuickOrder.Entities.Entities.EntityFramework
+@model CompanyInformations
+<section id="reach-to" class="welcome-part home-icon">
+    <div class="icon-default">
+        <a href="#reach-to" class="scroll"><img src="/content/staticImages/scroll-arrow.png" alt=""></a>
+    </div>
+    <div class="container">
+        <div class="build-title">
+            <h2> @Model.companyName'a Hoşgeldiniz</h2>
+            <h6>@Model.companyCaption</h6>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <p>@Html.Raw(Model.companyAbout)</p>
+               
+             
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <img src="/content/staticImages/img2.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="float-main">
+        <div class="icon-top-left">
+            <img src="/content/staticImages/icon1.png" alt="">
+        </div>
+        <div class="icon-bottom-left">
+            <img src="/content/staticImages/icon2.png" alt="">
+        </div>
+        <div class="icon-top-right">
+            <img src="/content/staticImages/icon3.png" alt="">
+        </div>
+        <div class="icon-bottom-right">
+            <img src="/content/staticImages/icon4.png" alt="">
+        </div>
+    </div>
+</section>

@@ -1,0 +1,17 @@
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\bin\Debug\QuickOrder.UnitOfWork.dll
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\bin\Debug\QuickOrder.UnitOfWork.pdb
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\bin\Debug\QuickOrder.Bll.dll
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\bin\Debug\QuickOrder.Entities.dll
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\bin\Debug\QuickOrder.Bll.pdb
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\bin\Debug\QuickOrder.Bll.dll.config
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\bin\Debug\QuickOrder.Entities.pdb
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\bin\Debug\QuickOrder.Entities.dll.config
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\bin\Debug\EntityFramework.xml
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\obj\Debug\QuickOrder.UnitOfWork.csprojAssemblyReference.cache
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\obj\Debug\QuickOrder.UnitOfWork.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\obj\Debug\QuickOrder.UnitOfWork.csproj.CopyComplete
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\obj\Debug\QuickOrder.UnitOfWork.dll
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\obj\Debug\QuickOrder.UnitOfWork.pdb
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\bin\Debug\QuickOrder.Dal.dll
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\bin\Debug\QuickOrder.Dal.pdb
+C:\Users\LENOVO\Desktop\QuickOrder\QuickOrder.UnitOfWork\bin\Debug\QuickOrder.Dal.dll.config

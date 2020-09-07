@@ -1,0 +1,106 @@
+﻿@model QuickOrder.WebMVC.Models.productDetail
+@{
+    ViewBag.Title = "productDetail";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<section class="home-icon shop-single pad-bottom-remove">
+    <div class="icon-default">
+        <img src="~/content/staticImages/scroll-arrow.png" alt="">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <div class="slider slider-for slick-shop">
+                    <div>
+                        <img src="@Model.singleProduct.coverPicturePath" alt="">
+                    </div>
+                 
+                </div>
+                
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <h4 class="text-coffee">@Model.singleProduct.name</h4>
+                
+                <p>@Model.singleProduct.caption</p>
+                <h3 class="text-coffee">$ @Model.singleProduct.price</h3>
+                <a href="javascript:void(0)" class="filter-btn btn-large" data-id="@Model.singleProduct.id"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Sepete Ekle</a>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Start Tab Part -->
+<section class="default-section comment-review-tab bg-grey v-pad-remove wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+    <div class="container">
+        <div class="tab-part">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation">
+                    <a href="#description" aria-controls="description" role="tab" data-toggle="tab">Detay</a>
+                </li>
+                
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="description">
+                    <div class="title text-left">
+                        <h3 class="text-coffee">Ürün Detay</h3>
+                    </div>
+                    <p>@Model.singleProduct.description</p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Tab Part -->
+<!-- Start Related Product -->
+<section class="related-product wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+    <div class="container">
+        <div class="build-title">
+            <h3>Benzer Ürünler</h3>
+        </div>
+        <div class="owl-carousel owl-theme" data-items="4" data-laptop="3" data-tablet="2" data-mobile="1" data-nav="false" data-dots="true" data-autoplay="true" data-speed="1800" data-autotime="5000">
+            @foreach (var item in Model.relatedProducts)
+            {
+                <div class="item">
+                    <div class="related-img">
+                        <img src="@item.coverPicturePath" alt="@item.name">
+                    </div>
+                    <div class="related-info">
+                        <h6><a href="#">@item.name</a></h6>
+                        <h6><a href="#"><strong>$ @item.price</strong></a></h6>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!-- End Related Product -->
+<script>
+    $(".filter-btn").click(function () {
+        var id = $(this).data("id");
+        $.ajax({
+            url: "/basket/addBasket",
+            type: "GET",
+            data: { id: id },
+            success: function myfunction() {
+                alert("Success");
+                $.ajax({
+                    type:"GET",
+                    url: "/basket/basket",
+                    success: function myfunction(newPro) {
+
+                        $(".allCart").html('');
+                        $(".allCart").html(newPro);
+
+                    }
+                });
+            },
+            error: function myfunction() {
+                alert("Failed");
+            }
+        });
+
+    });
+</script>

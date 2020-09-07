@@ -1,0 +1,124 @@
+﻿@using QuickOrder.WebMVC.Models
+@model contactModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<section class="default-section contact-part home-icon">
+    <div class="icon-default">
+        <img src="/content/staticImages/scroll-arrow.png" alt="">
+    </div>
+    <div class="container ">
+        <div class="title text-center">
+            <h2 class="text-coffee">Contact Us</h2>
+            <h6 class="heade-xs">1972'den beri Hizmetinizdeyiz.</h6>
+
+            <div class="row"> </div>
+            <div class="col-md-8 col-sm-8 col-xs-12 wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInDown;">
+                <h5 class="text-coffee">Görüş Bilgirin.</h5>
+                <p>Olumlu ya da Olumsuz Tüm Görüşlerinizi Bildirebilirsiniz.</p>
+
+                <form class="form" id="reviewPost" method="post" action="/contact/Index">
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>İsim*</label>
+                            <input name="visitorName" type="text" required="">
+
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Soy isim *</label>
+                            <input name="visitorSurname" type="text" required="">
+
+
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Email *</label>
+                            <input name="email" type="email">
+
+
+
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label>Konu *</label>
+                            <input name="subject" type="text" required="">
+
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>Metin *</label>
+                            <textarea name="comment"></textarea>
+
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <input name="submit" value="SEND MESSAGE" class="btn-black pull-right send_message" type="submit">
+                        </div>
+                    </div>
+                </form><div class="alertValidation" style="float:left"></div>
+            </div> 
+            <div class="col-md-4 col-sm-4 col-xs-12 wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInDown;">
+                <address>
+                    <span class="text-primary co-title">Adres</span>
+                    <p>@Model.compInfo.companyAddress</p>
+                    <p>
+                        @foreach (var phone in Model.compInfo.Phones)
+                        {
+                            <a href="tel:+@phone.phoneNumber">@phone.phoneNumber</a>
+                        }
+                        <br> <a href="mailto:@Model.compInfo.email">@Model.compInfo.email</a>
+                    </p>
+                </address>
+                <h5 class="text-coffee">Opening Hours</h5>
+                <ul class="time-list">
+                    <li><span class="week-name">Pazartesi</span> <span>12-6 PM</span></li>
+                    <li><span class="week-name">Salı</span> <span>12-6 PM</span></li>
+                    <li><span class="week-name">Çarşamba</span> <span>12-6 PM</span></li>
+                    <li><span class="week-name">Perşembe</span> <span>12-6 PM</span></li>
+                    <li><span class="week-name">Cuma</span> <span>12-6 PM</span></li>
+                    <li><span class="week-name">Cumartesi</span> <span>12-6 PM</span></li>
+                    <li><span class="week-name">Pazar</span> <span>Kapalı</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/content/js/jquery.min.js"></script>
+<script src="~/Areas/AdminPanel/context/admin-panel/assets/js/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $("#reviewPost").submit(function (e) {
+        
+        e.preventDefault(); $(".alertValidation").html('');
+        var dataString = new FormData($("#reviewPost").get(0));
+        contentType = false;
+        processData = false;
+        var div = ""; debugger;
+        $(".errors").closest("div").remove();
+        $.ajax({
+            type: "POST",
+            url: "/contact/Index",
+            data: dataString,
+            dataType: "json",
+            contentType: contentType,
+            processData: processData,
+            
+            success: function (data) {
+                
+                if (data.err == 1) {
+                    $.each(data.modelState, function (index, value) {
+
+                        div = '<p class="errors" style="color:#e4b95b;text-align:left">*';
+                        div += value;
+                        div += "</p>";
+
+                        $(".alertValidation").append(div);
+                    })
+                } else if (data.err == 0) {
+                    $("#reviewPost")[0].reset();
+                    alert("Mesajınız İletildi.");
+                }
+            },
+            error: function () {
+               
+            }
+        });
+    });
+</script>

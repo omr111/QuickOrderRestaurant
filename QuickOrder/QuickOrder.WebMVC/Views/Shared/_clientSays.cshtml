@@ -1,0 +1,30 @@
+﻿@using QuickOrder.Entities.Entities.EntityFramework
+
+@model List<reviews>
+<section class="client banner-bg invert invert-black home-icon wow fadeInDown" data-background="/content/staticImages/banner3.jpg" data-wow-duration="1000ms" data-wow-delay="300ms">
+    <div class="icon-default icon-black">
+        <img src="/content/staticImages/icon21.png" alt="">
+    </div>
+    <div class="container">
+        <div class="build-title">
+            <h2>Sizden Gelenler</h2>
+            <h6>1500+ Misafir Yorumları</h6>
+        </div>
+        <div class="client-say">
+            <div class="owl-carousel owl-theme" data-items="1" data-laptop="1" data-tablet="1" data-mobile="1" data-nav="false" data-dots="true" data-autoplay="true" data-speed="1800" data-autotime="5000">
+                @foreach (var review in Model)
+                {
+                    <div class="item">
+                        <p><img src="" alt="" style="border-radius:50px!important"></p>
+                        <h5>@review.visitorName @review.visitorSurname</h5>
+
+                        <p>
+                            @review.comment
+                        </p>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>

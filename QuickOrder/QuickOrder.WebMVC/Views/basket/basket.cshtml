@@ -1,0 +1,80 @@
+﻿@using QuickOrder.WebMVC.App_Classes
+@model card
+<div class="shop-cart header-collect allCart">
+    @{       
+
+        if (Model != null)
+        { <a href="#"><img src="/content/staticImages/icon-basket.png" alt=""> @Model.BasketItems.Count() ürün - $ @Model.cardTotalPrice </a> }
+    else
+    {<a href="#"><img src="/content/staticImages/icon-basket.png" alt=""> 0 ürün - $ 0 </a> }
+    }
+    <div class="cart-wrap">
+        <div class="cart-blog" style="max-height:400px; overflow-y:scroll">
+            @if (Session["activeBasket"] != null)
+            {
+                foreach (var item in Model.BasketItems)
+                {
+            <a href="/product/productDetail/@item.products.id">
+                <div class="cart-item">
+                    <div class="cart-item-left">
+                        <img src="@item.products.coverPicturePath" width="66" alt="@item.products.name">
+                    </div>
+                    <div class="cart-item-right">
+                        <h6>@item.products.name</h6>
+                        <span>$ @item.products.price</span>
+                        <span> (@item.count items)</span>
+                    </div>
+                    <a href="javascript:void(0)" class="deleteProduct" data-id="@item.products.id"><span class="delete-icon"></span></a>
+                </div>
+            </a>
+                }
+            }
+            <div class="subtotal">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <h6>Ara Toplam :</h6>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <span>$ @(Model == null ? 0 : Model.cardTotalPrice) </span>
+                </div>
+            </div>
+            <div class="cart-btn">
+                <a href="/basket/basketDetail" class="btn-black view">Sepete Git</a>
+                <a href="/basket/checkout" class="btn-main checkout">Ödemeye Geç</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/content/js/jquery.min.js"></script>
+<script src="~/Areas/AdminPanel/context/admin-panel/assets/js/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".deleteProduct").click(function () {            
+        var id = $(this).data("id");           
+            $.ajax({
+                url: "/basket/deleteBasket/",
+                data: { id: id },
+                type: "GET",
+                success: function myfunction() {
+                    $.ajax({
+                        url: "/basket/basket",
+                        type: "GET",
+                        success: function myfunction(result) {
+                           
+                            $(".allCart").html('');
+                            $(".allCart").html(result);
+
+                        },
+                        error: function myfunction() {
+                            alert("Error");
+                        }
+
+                    });
+
+                }
+            });
+
+        });
+    });
+
+</script>
+<script src="/content/plugin/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>

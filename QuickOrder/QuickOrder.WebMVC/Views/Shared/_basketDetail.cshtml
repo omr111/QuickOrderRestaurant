@@ -1,0 +1,90 @@
+﻿@using QuickOrder.WebMVC.App_Classes
+@model card
+
+<div class="icon-default icon-skeen ">
+    <img src="~/content/staticImages/scroll-arrow.png" alt="">
+</div>
+
+<div class="container " >
+    <div class="checkout-wrap wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInDown;">
+        <ul class="checkout-bar">
+            <li class="active">Sepet</li>
+            <li>Ödemeye Git</li>
+            <li>Siparişi Tamamla</li>
+        </ul>
+    </div>
+    <div class="shop-cart-list wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInDown;">
+        <table class="shop-cart-table">
+            <thead>
+                <tr>
+                    <th>ÜRÜN</th>
+                    <th>FİYAT</th>
+                    <th>ADET</th>
+                    <th>TOPLAM</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.BasketItems)
+                {
+                    <tr>
+                        <th>ÜRÜN</th>
+                        <td>
+                            <a href="/product/productDetail/@item.products.id">
+                                <div class="product-cart">
+                                    <img src="@item.products.coverPicturePath" width="100" alt="@item.products.name">
+                                </div>
+                                <div class="product-cart-title">
+                                    <span>@item.products.name</span>
+                                </div>
+                            </a>
+                        </td>
+                        <th>FİYAT</th>
+                        <td>
+                            <strong>@item.products.price</strong>
+                            @*<del>$5400.00</del>*@
+                        </td>
+                        <th>ADET</th>
+                        <td>
+                            <div class="price-textbox">
+                               <span class="minus-text" data-id="@item.products.id"><i class="icon-minus"></i></span>
+                                <input class="count" name="txt" type="text" disabled value="@item.count" style="background-color:white">
+                                <span class="plus-text" data-id="@item.products.id"><i class="icon-plus"></i></span>
+                            </div>
+                        </td>
+                        <th>TOPLAM</th>
+                        <td>
+                            @(item.products.price * item.count)
+                        </td>
+                        <td class="shop-cart-close" data-id="@item.products.id"><i class="icon-cancel-5"></i></td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+        <div class="product-cart-detail">
+            <div class="cupon-part">
+                <input type="text" name="txt" placeholder="Cupon Code">
+            </div>
+            <a href="#" class="btn-medium btn-dark-coffee">Kupon Ekle</a>
+          
+        </div>
+    </div>
+    <div class="cart-total wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInDown;">
+        <div class="cart-total-title">
+            <h5>CART TOTALS</h5>
+        </div>
+        <div class="product-cart-total">
+            <small>Total products</small>
+            <span>$ @(Model.cardTotalPrice)</span>
+        </div>
+
+       
+        <div class="grand-total">
+            <h5>TOTAL <span>$ @(Model.cardTotalPrice )</span></h5>
+        </div>
+        <div class="proceed-check">
+            <a href="/basket/checkout" class="btn-primary-gold btn-medium">Alışverişi Tamamla</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+﻿@using QuickOrder.Entities.Entities.EntityFramework
+@model List<users>
+@{
+    ViewBag.Title = "managemenetTeam";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_adminLayout.cshtml";
+}
+<div id="sil"></div>
+<div id="before" class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Yönetim Takımı</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Kullanıcı Adı</th>
+                                    <th>İsim</th>
+                                    <th>Soyisim</th>
+                                    <th>Mail</th>
+                                    <th>Kullanıcının Rütbeleri</th>
+                                    <th>Engelli</th>
+                                    <th>Rütbeyi Geri Al</th>
+                                    <th>Sil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(users user in Model)
+                                {
+
+                                    <tr>
+                                        <td>@user.name</td>
+                                        <td>@user.personelName</td>
+                                        <td>@user.surname</td>
+                                        <td>@user.email</td>
+                                    
+                                            <td>
+                                                <select id="dropdown-@user.id" name="roleName" class="form-control">
+                                                    <option></option>
+                                                    @foreach (roleOfUsers rolesUser in user.roleOfUsers)
+                                                    {
+                                                        <option value="@rolesUser.roleID">@rolesUser.roles.roleName</option>
+                                                    }
+                                                </select>
+                                            </td>
+
+                                       
+
+                                        <td>
+                                            @if (user.isBlock)
+                                            {
+                                                <a href="/AdminPanel/user/managerBlock/@user.id " class="btn btn-danger"><i class="fa fa-lock"></i></a>
+                                            }
+                                            else
+                                            {
+                                                <a href="/AdminPanel/user/managerBlock/@user.id " class="btn btn-success"><i class="fa fa-unlock"></i></a>
+                                            }
+                                        </td>
+                                        <td><a class="btn btn-danger roleDismiss" data-id="@user.id"><i class="fa fa-ban"></i></a></td>
+                                        <td><a href="/AdminPanel/user/managerDelete/@user.id" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+                                        
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div><!-- .animated -->
+</div>
+@section js{
+    <script type="text/javascript">
+        $(".roleDismiss").click(function () {
+            var userId = $(this).data("id");
+            const dropdown = $("#dropdown-" + userId).val();
+           
+            var ok = '<div class="col-sm-12">';
+            ok += '<div class="alert  alert-success alert-dismissible fade show" role="alert">';
+            ok += ' <span class="badge badge-pill badge-success">Success</span> Rütbe Düşürüldü.';
+            ok += ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+            ok += '<span aria-hidden="true">&times;</span>';
+            ok += '</button>';
+            ok += '</div>';
+            ok += ' </div>';
+            var okFail = '<div class="col-sm-12">';
+            okFail += '<div class="alert  alert-danger alert-dismissible fade show" role="alert">';
+            okFail += ' <span class="badge badge-pill badge-success">Error</span> Rütbe Geri Alanamadı! ';
+            okFail += ' <button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+            okFail += '<span aria-hidden="true">&times;</span>';
+            okFail += '</button>';
+            okFail += '</div>';
+            okFail += ' </div>';
+           
+            $.ajax({
+                url: "/AdminPanel/roleOfUser/roleDismiss",
+                type: "POST",
+                data: { roleId: dropdown, userId: userId },
+                success:function(result) {
+                    if (result == 1) {
+                        $("#sil").html(ok);
+                        setTimeout(function () { $('#sil').hide('slow'); }, 5000);
+                        $(this).closest('tr').remove();
+                    }
+                    else {
+                        $("#sil").html(okFail);
+                        setTimeout(function () { $('#sil').hide('slow'); }, 5000);
+                    }
+                },
+                error:function() {
+                  
+                    $("#sil").html(okFail);
+                    setTimeout(function () { $('#sil').hide('slow'); }, 5000);
+                }
+            });
+        });
+
+    </script>
+}

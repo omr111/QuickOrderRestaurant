@@ -1,0 +1,89 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QuickOrder - Aparatif & Restaurant</title>
+
+    <link href="/content/plugin/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="/content/plugin/bootstrap/datepicker.css" rel="stylesheet">
+    <link href="/content/plugin/font-awesome/font-awesome.css" rel="stylesheet">
+    <link href="/content/plugin/form-field/jquery.formstyler.css" rel="stylesheet">
+    <link href="/content/plugin/revolution-plugin/extralayers.css" rel="stylesheet">
+    <link href="/content/plugin/revolution-plugin/settings.css" rel="stylesheet">
+    <link href="/content/plugin/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="/content/plugin/owl-carousel/owl.theme.default.css" rel="stylesheet">
+    <link href="/content/plugin/slick-slider/slick-theme.css" rel="stylesheet">
+    <link href="/content/plugin/magnific/magnific-popup.css" rel="stylesheet">
+    <link href="/content/plugin/scroll-bar/jquery.mCustomScrollbar.css" rel="stylesheet">
+    <link href="/content/plugin/animation/animate.min.css" rel="stylesheet">
+    <link href="/content/css/theme.css" rel="stylesheet">
+    <link href="/content/css/responsive.css" rel="stylesheet">
+  
+</head>
+
+<body>
+    <!-- Page pre loader -->
+    <div id="pre-loader">
+        <div class="loader-holder">
+            <div class="frame">
+                <img src="/content/staticImages/Preloader.gif" alt="QuickOrder" />
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <!-- Start Header -->
+        @{
+            Html.RenderAction("header", "Home");
+        }
+        <!-- End Header -->
+        <!-- Start Main -->
+        <main>
+            <div class="main-part">
+                @{
+                    Html.RenderAction("banner", "Home");
+
+                }
+
+
+                @RenderBody()
+            </div>
+        </main>
+        <!-- End Main -->
+        <!-- Start Footer -->
+        @{ Html.RenderAction("footer", "Home");}
+        <!-- End Footer -->
+        <!-- Start Book Table -->
+        @{ Html.RenderAction("bookTable", "Home");}
+        <!-- End Book Table -->
+    </div>
+    <!-- Back To Top Arrow -->
+    <a href="#" class="top-arrow"></a>
+    <script src="/content/js/jquery.min.js"></script>
+    <script src="~/Areas/AdminPanel/context/admin-panel/assets/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/content/plugin/bootstrap/bootstrap.min.js"></script>
+    <script src="/content/plugin/bootstrap/bootstrap-datepicker.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf6My1Jfdi1Fmj-DUmX_CcNOZ6FLkQ4Os"></script>
+    <script src="/content/plugin/form-field/jquery.formstyler.min.js"></script>
+    <script src="/content/plugin/revolution-plugin/jquery.themepunch.plugins.min.js"></script>
+    <script src="/content/plugin/revolution-plugin/jquery.themepunch.revolution.min.js"></script>
+    <script src="/content/plugin/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/content/plugin/slick-slider/slick.min.js"></script>
+    <script src="/content/plugin/isotop/isotop.js"></script>
+    <script src="/content/plugin/isotop/packery-mode.pkgd.min.js"></script>
+    <script src="/content/plugin/magnific/jquery.magnific-popup.min.js"></script>
+    <script src="/content/plugin/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/content/plugin/animation/wow.min.js"></script>
+    <script src="/content/plugin/parallax/jquery.stellar.js"></script>
+    <script src="/content/js/app.js"></script>
+    <script src="/content/js/script.js"></script>
+    
+    @RenderSection("js", false)
+</body>
+
+
+</html>

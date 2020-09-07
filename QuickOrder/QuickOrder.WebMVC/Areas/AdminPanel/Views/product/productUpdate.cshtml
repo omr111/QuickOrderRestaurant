@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "productUpdate";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_adminLayout.cshtml";
+}
+
+@model  QuickOrder.WebMVC.Areas.Models.productUpdateModel
+<div id="errorOfproduct">
+    @if (TempData["productUpdateError"] != null)
+    {
+        <div class="col-sm-12">
+
+            <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                <span class="badge badge-pill badge-success">Hata</span> @TempData["productUpdateError"].ToString()
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    }
+
+</div>
+<script type="text/javascript">
+    setTimeout(function () { $('#errorOfproduct').hide('slow'); }, 5000);
+</script>
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        @using (Html.BeginForm("productUpdate", "product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+
+                <div class="col-xs-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Product Update</strong>
+                        </div>
+
+
+
+                        <div class="card-body card-block">
+                            <div class="form-group">
+                                <label class=" form-control-label">Product Title</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa icofont-fast-food"></i></div>
+                                    <input type="text" value="@Model.Product.name" name="name" class="form-control">
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Product.name, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label">Product Caption</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-audio-description"></i></div>
+                                    <input type="text" name="caption" class="form-control" value="@Model.Product.caption">
+                                    @Html.ValidationMessageFor(m => m.Product.caption, "", new { @style = "color:red" })
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label">Price</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-turkish-lira"></i></div>
+                                    <input type="number" name="price" class="form-control " value="@Convert.ToInt32(Model.Product.price)">
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Product.price, "", new { @style = "color:red" })
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-body card-block">
+                            <div class="form-group">
+                                <label class=" form-control-label">Category</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-list"></i></div>
+                                    <select title="Please enter a category " class="form-control" name="categoryID" required>
+                                        <option></option>
+                                        @foreach (QuickOrder.WebMVC.Entities.Categories category in Model.Categories)
+                                        {
+                                            <option value="@category.id">@category.categoryName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class=" form-control-label">Picture</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-file"></i></div>
+
+                                    <input id="productFile" class="form-control" type="file" name="file" title="If you dont want to change the picture, dont upload any picture!">
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <input type="submit" value="Submit" class="btn btn-success" style="float: right" />
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div><!--row end-->
+        }
+    </div><!-- .animated -->
+</div>

@@ -1,0 +1,22 @@
+﻿@model string
+<link href="/content/plugin/bootstrap/bootstrap.css" rel="stylesheet">
+
+<link href="/content/plugin/font-awesome/font-awesome.css" rel="stylesheet">
+
+<link href="/content/css/theme.css" rel="stylesheet">
+<link href="/content/css/responsive.css" rel="stylesheet">
+@{
+    Html.RenderAction("header", "Home");
+}
+<div class="main-part">
+    <div class="error-404 banner-bg wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" style="background-image: url('/content/staticImages/banner1.jpg');">
+        <div class="error-404-inner">
+            <div class="error-404-title">4 <img src="/content/staticImages/404.png" alt=""> 4</div>
+            <h2>PAGE NOT FOUND</h2>
+            <p>
+                @Model
+                <br><a href="/Home/Index">  Ana Sayfa'ya</a> Geri Dön 
+            </p>
+        </div>
+    </div>
+</div>

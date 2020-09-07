@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<section class="home-icon login-register bg-skeen">
+    <div class="icon-default icon-skeen">
+        <img src="images/scroll-arrow.png" alt="">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <div class="login-wrap form-common">
+                    <div class="title text-center">
+                        <h3 class="text-coffee">Giriş</h3>
+                    </div>
+                    <form class="login-form" method="post" name="login" action="/users/login">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="text" name="email" required placeholder="Email address" class="input-fields">
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="password" name="password" required placeholder="********" class="input-fields">
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="submit" name="submit" value="Giriş Yap" class="button-default button-default-submit">
+                            </div>
+                        </div>
+                    </form>
+                   
+                    
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <div class="register-wrap form-common">
+                    <div class="title text-center">
+                        <h3 class="text-coffee">Kayıt Ol</h3>
+                    </div>
+                    <form class="register-form" method="post" name="register" action="/users/register">
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="text" name="name" placeholder="User Name" class="input-fields">
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="text" name="personelName" placeholder="First Name" class="input-fields">
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="text" name="surname" placeholder="Last Name" class="input-fields">
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="text" name="email" placeholder="Email Address" class="input-fields">
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="password" name="password" placeholder="Password" class="input-fields">
+                            </div>
+                          
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <input type="submit" name="submit" class="button-default button-default-submit" value="Kayıt Ol">
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                @*@if (ViewData["logInError"] != null)
+                                {
+                                    <p>@ViewData["logInError"].ToString()</p>
+                                }*@
+
+                            </div>
+                        </div>
+                    </form>
+            
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

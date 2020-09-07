@@ -1,0 +1,119 @@
+﻿@using QuickOrder.WebMVC.Models
+@model headerModel
+<header>
+    <div class="header-part header-reduce sticky">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-top-inner">
+                    <div class="header-top-left">
+                        <a href="#" class="top-cell">
+                            <img src="/content/staticImages/fon.png" alt="">
+                            @foreach (var phone in Model.company.Phones)
+                            {
+                                <span>@phone.phoneNumber</span>
+                                
+                            }
+                        </a>
+                        <a href="#" class="top-email"><span>@Model.company.email</span></a>
+                    </div>
+                    <div class="header-top-right">
+                        <div class="social-top">
+                            <ul>
+                                <li><a href="@Model.company.facebookUrl"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="@Model.company.twitterUrl"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="@Model.company.InstagramUrl"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <div class="language-menu">
+                                <a href="#" class="current-lang">My Account (@User.Identity.Name) <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                <ul>
+                                    <li><a href="/users/logout"><i class="fa fa-angle-right" aria-hidden="true"></i>Çıkış</a></li>
+                                    @if (User.IsInRole("Moderator"))
+                                    {<li><a href="/AdminPanel/Home/Index"><i class="fa fa-angle-right" aria-hidden="true"></i>AdminPanel Giriş</a></li>
+                                    }
+                                    </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="language-menu">
+                                <a href="#" class="current-lang">Giriş/Kayıt <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                <ul>
+                                    <li><a href="/users/login"><i class="fa fa-angle-right" aria-hidden="true"></i>Giriş</a></li>
+                                    <li><a href="/users/login"><i class="fa fa-angle-right" aria-hidden="true"></i>Kayıt</a></li>
+
+
+                                </ul>
+                            </div>
+                        }
+                       
+                          
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container">
+                <div class="header-info">
+                    <div class="header-info-inner">
+                        <div class="book-table header-collect book-md">
+                            <a href="#" data-toggle="modal" data-target="#booktable"><img src="/content/staticImages/icon-table.png" alt="">Rezervasyon</a>
+                        </div>
+                        @{ Html.RenderAction("basket","basket");}
+                        <div class="search-part">
+                            <a href="/"></a>
+                            <div class="search-box">
+                                <form method="get" action="/product/searchProduct">
+                                    <input type="text" name="search" placeholder="Search">
+                                    <input type="submit" name="submit" value=" ">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-icon">
+                    <a href="#" class="hambarger">
+                        <span class="bar-1"></span>
+                        <span class="bar-2"></span>
+                        <span class="bar-3"></span>
+                    </a>
+                </div>
+                <div class="book-table header-collect book-sm">
+                    <a href="#" data-toggle="modal" data-target="#booktable"><img src="/content/staticImages/icon-table.png" alt="">Rezervasyon</a>
+                </div>
+                
+                <div class="menu-main">
+                    <ul>
+                        <li class="has-child">
+                            <a href="/Home/Index">AnaSayfa</a>
+                        </li>
+
+                        <li class="has-child">
+                            <a href="/product/Index">Ürünler</a>
+
+                        </li>
+                        <li class="has-child">
+                            <a href="/about/Index">Hakkımızda</a>
+
+                        </li>
+                        <li class="has-child">
+                            <a href="/contact/Index">İletişim</a>
+
+                        </li>
+
+
+                    </ul>
+                </div>
+                <div class="logo">
+
+                    <a href="/Home/Index"><img src="@Model.company.companyLogo" alt="@Model.company.companyName"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
