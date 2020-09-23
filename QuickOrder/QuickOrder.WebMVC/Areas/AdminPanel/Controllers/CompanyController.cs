@@ -125,7 +125,7 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
 
 
         }
-        [ValidateAntiForgeryToken]
+       
         [HttpPost]
         public string phoneAdd(int companyId, string selectedPhone)
         {
