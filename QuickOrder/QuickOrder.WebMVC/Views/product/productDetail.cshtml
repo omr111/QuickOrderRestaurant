@@ -76,7 +76,6 @@
         </div>
     </div>
 </section>
-<!-- End Related Product -->
 <script>
     $(".filter-btn").click(function () {
         var id = $(this).data("id");
@@ -85,7 +84,7 @@
             type: "GET",
             data: { id: id },
             success: function myfunction() {
-                alert("Success");
+                alert("Ürün Sepete Eklendi");
                 $.ajax({
                     type:"GET",
                     url: "/basket/basket",

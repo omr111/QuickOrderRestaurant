@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Promosyon Ekleme";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_adminLayout.cshtml";
+}
+
+
+@using QuickOrder.Entities.Entities
+@model Promotion
+
+
+
+@using (Html.BeginForm("promotionAdd", "Promotion", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+    <!-- content-->
+    <div class="infosaveUser">
+        @if (ViewData["productAddingError"] != null)
+        {
+
+            <div class="col-sm-12">
+
+                <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                    <span class="badge badge-pill badge-success">Hata</span> @ViewData["productAddingError"].ToString()
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Promosyon Ekle</strong>
+                        </div>
+                        <div class="card-body card-block">
+                            <div class="form-group">
+                                <label class=" form-control-label">Promosyon Key</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa icofont-fast-food"></i></div>
+                                    <input type="text" name="PromotionKey" class="form-control">
+                                </div>
+                                @Html.ValidationMessageFor(m => m.PromotionKey, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label">İndirim Oranı</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-audio-description"></i></div>
+                                    <input type="text" name="DiscountRate" class="form-control">
+                                </div>
+                                @Html.ValidationMessageFor(m => m.DiscountRate, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label">Bitiş Tarihi</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-turkish-lira"></i></div>
+                                    <input type="date" name="Endate" class="form-control ">
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Endate, "", new { @style = "color:red" })
+                            </div>
+                            <div class="form-group">
+
+                                <input type="submit" value="Submit" class="btn btn-success" style="float: right" />
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div><!--row end-->
+        </div><!-- .animated -->
+    </div>
+    <!-- .content -->
+
+
+}

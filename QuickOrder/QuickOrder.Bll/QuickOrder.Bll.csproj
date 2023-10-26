@@ -57,8 +57,8 @@
     <Compile Include="Abstract\ICompanyInformationBll.cs" />
     <Compile Include="Abstract\IPhoneBll.cs" />
     <Compile Include="Abstract\IProductBll.cs" />
+    <Compile Include="Abstract\IPromotionBll.cs" />
     <Compile Include="Abstract\IreviewBll.cs" />
-    <Compile Include="Abstract\IrezervationBll.cs" />
     <Compile Include="Abstract\IroleBll.cs" />
     <Compile Include="Abstract\IroleOfUserBll.cs" />
     <Compile Include="Abstract\ISaleProductBll.cs" />
@@ -71,8 +71,8 @@
     <Compile Include="Concrete\CompanyInformationBll.cs" />
     <Compile Include="Concrete\PhoneBll.cs" />
     <Compile Include="Concrete\ProductBll.cs" />
+    <Compile Include="Concrete\PromotionBll.cs" />
     <Compile Include="Concrete\reviewBll.cs" />
-    <Compile Include="Concrete\rezervationBll.cs" />
     <Compile Include="Concrete\roleBll.cs" />
     <Compile Include="Concrete\roleOfUserBll.cs" />
     <Compile Include="Concrete\SaleProductBll.cs" />

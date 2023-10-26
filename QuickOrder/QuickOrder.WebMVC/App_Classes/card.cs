@@ -12,9 +12,6 @@ namespace QuickOrder.WebMVC.App_Classes
         {
             if (HttpContext.Current.Session["activeBasket"] != null)
             {
-                int a =5;
-                int b = a;
-                b = 3;
 
                 card card = (card)HttpContext.Current.Session["activeBasket"];
 
@@ -34,7 +31,7 @@ namespace QuickOrder.WebMVC.App_Classes
             }              
  
         }
-       
+        public double disCountRate { get; set; } = 0;
         public decimal cardTotalPrice
         {
             get { return BasketItems.Sum(x => x.totalPrice); }
@@ -46,11 +43,11 @@ namespace QuickOrder.WebMVC.App_Classes
             get { return basketItems; }
             set { basketItems = value; }
         }
-        public static int tax
-        {
-            get { return 18; }
+        //public static int tax
+        //{
+        //    get { return 18; }
 
-        }
+        //}
         public class basketItem
         {
             public Products products { get; set; }
@@ -61,9 +58,9 @@ namespace QuickOrder.WebMVC.App_Classes
             {
                 get
                 {
-                    var price = products.price * count;
-                    
-                    return (decimal)price +(decimal)((price* tax) / 100);
+                    decimal price = (decimal)products.price * count;
+
+                    return price;
                 }
             }
 

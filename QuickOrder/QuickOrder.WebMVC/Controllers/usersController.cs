@@ -58,8 +58,7 @@ namespace QuickOrder.WebMVC.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
+               
                     users checkNick = ctx.userBll.getOneByEmail(usr.email);
                     if (checkNick == null)
                     {
@@ -106,13 +105,7 @@ namespace QuickOrder.WebMVC.Controllers
 
                         return RedirectToAction("login", "users");
                     }
-                }
-                else
-                {
-                    ViewData["userError"] = "Lütfen Bilgilerinizi Doğru ve Eksiksiz Girin!";
-
-                    return RedirectToAction("login", "users");
-                }
+            
 
                 return RedirectToAction("login", "users");
 

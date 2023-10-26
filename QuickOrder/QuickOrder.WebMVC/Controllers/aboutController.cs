@@ -18,7 +18,7 @@ namespace QuickOrder.WebMVC.Controllers
         // GET: about
         public ActionResult Index()
         {
-            return View(ctx.companyInformationBll.getOne(2));
+            return View(ctx.companyInformationBll.getOne(1)==null?new CompanyInformations(): ctx.companyInformationBll.getOne(1));
         }
    
 

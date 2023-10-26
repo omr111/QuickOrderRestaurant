@@ -40,7 +40,7 @@
 
                         <div class="card-body card-block">
                             <div class="form-group">
-                                <label class=" form-control-label">Product Title</label>
+                                <label class=" form-control-label">Ürün Başlık</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa icofont-fast-food"></i></div>
                                     <input type="text" value="@Model.Product.name" name="name" class="form-control">
@@ -48,7 +48,7 @@
                                 @Html.ValidationMessageFor(m => m.Product.name, "", new { @style = "color:red" })
                             </div>
                             <div class="form-group">
-                                <label class=" form-control-label">Product Caption</label>
+                                <label class=" form-control-label">Ürün Açıklama</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-audio-description"></i></div>
                                     <input type="text" name="caption" class="form-control" value="@Model.Product.caption">
@@ -57,7 +57,7 @@
 
                             </div>
                             <div class="form-group">
-                                <label class=" form-control-label">Price</label>
+                                <label class=" form-control-label">Fiyat</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-turkish-lira"></i></div>
                                     <input type="number" name="price" class="form-control " value="@Convert.ToInt32(Model.Product.price)">
@@ -73,12 +73,12 @@
                     <div class="card">
                         <div class="card-body card-block">
                             <div class="form-group">
-                                <label class=" form-control-label">Category</label>
+                                <label class=" form-control-label">Kategori</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-list"></i></div>
                                     <select title="Please enter a category " class="form-control" name="categoryID" required>
                                         <option></option>
-                                        @foreach (QuickOrder.WebMVC.Entities.Categories category in Model.Categories)
+                                        @foreach (QuickOrder.Entities.Entities.EntityFramework.Categories category in Model.Categories)
                                         {
                                             <option value="@category.id">@category.categoryName</option>
                                         }
@@ -87,7 +87,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class=" form-control-label">Picture</label>
+                                <label class=" form-control-label">Resim</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-file"></i></div>
 

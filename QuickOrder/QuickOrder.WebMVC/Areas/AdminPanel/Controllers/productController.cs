@@ -53,6 +53,7 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
                             product.pictureAlt = file.FileName;
                         }
                     }
+                  
                     ctx.productBll.add(product);
                  
                     
@@ -60,7 +61,6 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
                 }
                 else
                 {
-                    //ViewData["productAddingError"] = "Lütfen Tüm Verileri Eksiksiz Girin !";
                     ViewBag.category = ctx.categoryBll.getAll();
                     return View("productAdd");
                 }
@@ -155,7 +155,7 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
                         product.caption = pro.caption;
                         product.description = pro.description;
                         product.price = pro.price;
-                        bool resultUpdate = ctx.productBll.add(product);
+                        bool resultUpdate = ctx.productBll.update(product);
                      
                         
                         if (resultUpdate)

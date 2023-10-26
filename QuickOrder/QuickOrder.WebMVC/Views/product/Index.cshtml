@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <a href="#"><h5>@product.name</h5></a>
-                            <h5><strong>$ @product.price</strong></h5>
+                            <h5><strong>₺ @product.price</strong></h5>
                         </div>
                     </div>
                 }
@@ -79,7 +79,7 @@
             type: "GET",
             data: { id: id },
             success: function myfunction() {
-                alert("Success");
+                alert("Ürün Sepete Eklendi");
                 $.ajax({
                     type:"GET",
                     url: "/basket/basket",

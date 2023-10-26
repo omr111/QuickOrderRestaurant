@@ -5,10 +5,6 @@
 }
 @Html.Partial("_fastReach")
 @Html.Partial("_productWidget", @Model.Products)
-
-@Html.Partial("_reservationWidget",@Model.newReservationCount)
-
 @Html.Partial("_managementTeamWidget",@Model.managementTeam.Count)
-@Html.Partial("_totalRezervationWidget",@Model.defaultReservations.Count)
 @Html.Partial("_totalAccount",@Model.Users.Count)
 @Html.Partial("_activeMemberWidget")

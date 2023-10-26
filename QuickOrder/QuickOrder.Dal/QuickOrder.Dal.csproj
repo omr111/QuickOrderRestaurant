@@ -57,9 +57,9 @@
     <Compile Include="Abstract\ICompanyInformationDal.cs" />
     <Compile Include="Abstract\IPhoneDal.cs" />
     <Compile Include="Abstract\IProductDal.cs" />
+    <Compile Include="Abstract\IPromotionDal.cs" />
     <Compile Include="Abstract\IRepositoryBase.cs" />
     <Compile Include="Abstract\IreviewDal.cs" />
-    <Compile Include="Abstract\IrezervationDal.cs" />
     <Compile Include="Abstract\IroleDal.cs" />
     <Compile Include="Abstract\IroleOfUserDal.cs" />
     <Compile Include="Abstract\ISaleProductDal.cs" />
@@ -72,8 +72,8 @@
     <Compile Include="Concrete\CompanyInformationDal.cs" />
     <Compile Include="Concrete\PhoneDal.cs" />
     <Compile Include="Concrete\ProductDal.cs" />
+    <Compile Include="Concrete\PromotionDal.cs" />
     <Compile Include="Concrete\reviewDal.cs" />
-    <Compile Include="Concrete\rezervationDal.cs" />
     <Compile Include="Concrete\roleDal.cs" />
     <Compile Include="Concrete\roleOfUserDal.cs" />
     <Compile Include="Concrete\SaleProductDal.cs" />

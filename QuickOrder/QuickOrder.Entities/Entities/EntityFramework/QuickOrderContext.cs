@@ -19,7 +19,6 @@ namespace QuickOrder.Entities.Entities.EntityFramework
         public virtual DbSet<Phones> Phones { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<reviews> reviews { get; set; }
-        public virtual DbSet<rezervations> rezervations { get; set; }
         public virtual DbSet<roleOfUsers> roleOfUsers { get; set; }
         public virtual DbSet<roles> roles { get; set; }
         public virtual DbSet<SaleProducts> SaleProducts { get; set; }
@@ -27,9 +26,11 @@ namespace QuickOrder.Entities.Entities.EntityFramework
         public virtual DbSet<services> services { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<Promotion> Promotions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+         
             modelBuilder.Entity<Bills>()
                 .HasMany(e => e.SaleProducts)
                 .WithOptional(e => e.Bills)
@@ -49,7 +50,7 @@ namespace QuickOrder.Entities.Entities.EntityFramework
 
             modelBuilder.Entity<Products>()
                 .Property(e => e.price)
-                .HasPrecision(6, 2);
+                .HasPrecision(18, 2);
 
             modelBuilder.Entity<Products>()
                 .HasMany(e => e.SaleProductsDetails)

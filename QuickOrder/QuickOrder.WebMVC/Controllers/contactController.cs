@@ -21,7 +21,7 @@ namespace QuickOrder.WebMVC.Controllers
         public ActionResult Index()
         {
             contactModel contact = new contactModel();
-            contact.compInfo = ctx.companyInformationBll.getOne(2);
+            contact.compInfo = ctx.companyInformationBll.getOne(1)== null?  new CompanyInformations():ctx.companyInformationBll.getOne(1);
             contact.reviews = new reviews();
             return View(contact);
         }

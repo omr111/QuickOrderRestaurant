@@ -1,4 +1,4 @@
-﻿@model QuickOrder.Entities.Entities.EntityFramework.services
+﻿@model  QuickOrder.Entities.Entities.EntityFramework.services
 @{
     ViewBag.Title = "serviceAdd";
     Layout = "~/Areas/AdminPanel/Views/Shared/_adminLayout.cshtml";
@@ -20,11 +20,10 @@
                         </div>
                         <div class="card-body card-block">
                             <div class="form-group">
-                                <label class=" form-control-label">Service Title</label>
+                                <label class=" form-control-label">Hizmet Başlık</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa icofont-fast-food"></i></div>
-                                
-                                    @Html.TextBoxFor(m => m.serviceName, new { @class = "form-control" })
+                                <input  class="form-control" name="serviceName"/>
                                 </div>
                                 @Html.ValidationMessageFor(m=>m.serviceName,"",new {@style="color:red"})
                             </div>
@@ -32,8 +31,7 @@
                                 <label class=" form-control-label">Hizmet Tanımı</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-audio-description"></i></div>
-                                    @Html.TextAreaFor(m => m.serviceInfo, new { @class = "form-control" })
-                                   
+                                   <textarea class="form-control" name="serviceInfo"></textarea>
                                  
                                 </div>
                                 @Html.ValidationMessageFor(m=>m.serviceInfo,"",new{@style="color:red"})
@@ -49,7 +47,7 @@
                            
 
                             <div class="form-group">
-                                <label class=" form-control-label">Icon</label>
+                                <label class=" form-control-label">İkon</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-file"></i></div>
                               

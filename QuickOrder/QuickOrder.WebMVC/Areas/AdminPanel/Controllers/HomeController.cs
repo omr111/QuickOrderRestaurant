@@ -19,9 +19,6 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
         {
             AdminIndex adminIndex=new AdminIndex();
             adminIndex.Products = ctx.productBll.getAll();
-            
-            adminIndex.newReservationCount = ctx.rezervationBll.getAll().Count;
-            adminIndex.defaultReservations = ctx.rezervationBll.getAll();
             adminIndex.Users = ctx.userBll.getAll();
             adminIndex.managementTeam = ctx.userBll.getAll().Where(x => x.roleOfUsers.Any(y => y.roles.roleName != "customer")).ToList();
             ViewBag.OnlineVisitor = HttpContext.Application["visitor"];

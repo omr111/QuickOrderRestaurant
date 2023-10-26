@@ -24,6 +24,11 @@ namespace QuickOrder.WebMVC.Controllers
         {
             return View();
         }
+        public double couponAdd(string coupon)
+        {
+            var kupon=ctx.promotionBll.getOneByName(coupon);
+            return kupon != null ? kupon.DiscountRate : 0;
+        }
         public PartialViewResult basket()
         {            
             if (HttpContext.Session["activeBasket"] != null)
@@ -128,11 +133,16 @@ namespace QuickOrder.WebMVC.Controllers
             }
             return RedirectToAction("index", "home");
         }
-        public ActionResult checkout()
+        public ActionResult checkout(double? discountRate)
         {
             if (HttpContext.Session["activeBasket"] != null)
             {
-                return View((card)HttpContext.Session["activeBasket"]);
+                card card = (card)HttpContext.Session["activeBasket"];
+                if (discountRate!=null &&discountRate>0)
+                {
+                    card.disCountRate = discountRate.Value;
+                }
+                return View(card);
             }
             return View(HttpContext.Session["activeBasket"] = new card());
         }
@@ -185,7 +195,7 @@ namespace QuickOrder.WebMVC.Controllers
                                     productPrice = (decimal)item.products.price,
                                     amount = item.totalPrice,
                                     SaleID = sale.id,
-                                    tax = card.tax
+                                    //tax = card.tax
                                 };
                                 ctx.saleProductsDetailBll.add(details);
                                 

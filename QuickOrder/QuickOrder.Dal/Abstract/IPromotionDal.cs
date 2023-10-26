@@ -1,4 +1,4 @@
-﻿using QuickOrder.Entities.Entities.EntityFramework;
+﻿using QuickOrder.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace QuickOrder.Dal.Abstract
 {
-    public interface IrezervationDal : IRepositoryBase<rezervations>
+ 
+    public interface IPromotionDal : IRepositoryBase<Promotion>
     {
     }
 }

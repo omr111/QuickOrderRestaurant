@@ -1,6 +1,7 @@
 ﻿using QuickOrder.Entities.Entities.EntityFramework;
 using QuickOrder.UnitOfWork.Abstract;
 using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,7 +20,7 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
         public ActionResult Index()
         {
 
-            return View(ctx.serviceBll.getAll());
+            return View(ctx.serviceBll.getAll()==null?new List<services>():ctx.serviceBll.getAll());
         }
 
         public ActionResult serviceAdd()

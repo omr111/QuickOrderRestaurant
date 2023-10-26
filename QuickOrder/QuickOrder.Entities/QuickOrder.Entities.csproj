@@ -61,7 +61,6 @@
     <Compile Include="Entities\EntityFramework\Products.cs" />
     <Compile Include="Entities\EntityFramework\QuickOrderContext.cs" />
     <Compile Include="Entities\EntityFramework\reviews.cs" />
-    <Compile Include="Entities\EntityFramework\rezervations.cs" />
     <Compile Include="Entities\EntityFramework\roleOfUsers.cs" />
     <Compile Include="Entities\EntityFramework\roles.cs" />
     <Compile Include="Entities\EntityFramework\SaleProducts.cs" />
@@ -69,9 +68,9 @@
     <Compile Include="Entities\EntityFramework\services.cs" />
     <Compile Include="Entities\EntityFramework\sysdiagrams.cs" />
     <Compile Include="Entities\EntityFramework\users.cs" />
+    <Compile Include="Entities\Promotion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

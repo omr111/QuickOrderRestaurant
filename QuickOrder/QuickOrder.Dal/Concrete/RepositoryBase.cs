@@ -15,8 +15,19 @@ namespace QuickOrder.Dal.Concrete
         QuickOrderContext ctx = new QuickOrderContext();
         public bool add(T entity)
         {
-            ctx.Entry(entity).State = EntityState.Added;
-            return ctx.SaveChanges() > 0 ? true : false;
+            try
+            {
+               
+                    ctx.Entry(entity).State = EntityState.Added;
+                    return ctx.SaveChanges() > 0 ? true : false;
+                
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+            
         }
 
         public bool delete(T entity)

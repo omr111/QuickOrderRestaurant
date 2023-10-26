@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace QuickOrder.Bll.Abstract
 {
+    //interface oluşturulacak olan metodların özeti anlamındadır. Bu metodlar burada oluşturulur
+    //daha sonra  çağrıldığı yerde içleri doldurulur
     public interface IBannerBll
     {
         List<banners> getAll();

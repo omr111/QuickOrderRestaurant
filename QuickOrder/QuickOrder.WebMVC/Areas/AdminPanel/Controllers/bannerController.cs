@@ -12,32 +12,53 @@ using QuickOrder.UnitOfWork.Abstract;
 
 namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
 {
+    /*
+     AÇIKLAMA
+
+    Her bir html sayfasının bir controller'ı olur. Controller= verilerin kontrol, kumanda edildiği classlara denir. 
+    Bu alanda datalar çekilir ve istenilen şekilde html sayfasına yani viewlere gönderilir ve orada kullanıcıya gösterilir.
+     */
+
+    //Bu kod; bu controller'a sadece Moderator yetkisi olan kullanıcılar erişebilir demektir.
     [Authorize(Roles = "Moderator")]
     public class bannerController : Controller
     {
+        //IUnitOfWork veritabanındaki tüm tabloların classlara dönüştürülüp, daha sonra iş kurallarının yazılıp, bu iş kurallarına göre veritabanında verilerin çekilip
+        // kullanıma hazır hale getirilen bannerBll, productBll gibi classların bir arada tutularak tek satır kod ile çağrılması için kullanılan bir tekniktir.
+        // Kısacası bir sepet görevi görür. Elma ve Armutlar bir sepete atılır, tek tek her birinin çağrılması yerine, sepet getirilir ve sepet içinden isteyen elma ya da
+        //armut'u alır.
         IUnitOfWork ctx;
         public bannerController(IUnitOfWork _ctx)
         {
             ctx = _ctx;
         }
-        // GET: AdminPanel/banner
+       
+        //Veritabanından banner'ların tamamının çekilip view de gösterildiği fonksiyondur
         public ActionResult Index()
         {
+            //Burada görüldüğü gibi ctx; yani meyve sepeti getirilmiş ve içinden bannerBll alınmış. İstense productBll de alınabilirdi
             List<banners> banners = ctx.bannerBll.getAll();
             if (banners!=null)
             {
+                //Getirilen veritabanı verileri ilgili view'e liste halinde return ediliyor, yani gönderiliyor
                 return View(banners);
             }
             return View();
         }
+        //Admin panel üzerinden banner ekleme işlemi sırasında çalışan fonksiyondur. HTTPOST demek; bu servisin sadece post işlemi yaparken çalıştığını gösterir
+        // Yani DB'ye ekleme, silme ya da güncelleme için kullanır demektir.
         [HttpPost]
         public ActionResult bannerAdd(string text, HttpPostedFileBase companyPicturePath)
         {
-
+            //try case metodu demek; işlem sırasında bir hata olursa projeyi durdurma sadece beni uyar demek için kullanılır
             try
             {
+                //ModelState.IsValid demek, Kayıt etmek için girilen veriler benim istediğim gibi mi gelmiş onun kontrolünü yapar.
+                // Eğer geçersiz veri gelmişse kayıt etmez ve hata mesajı döndürür
                 if (ModelState.IsValid &&!string.IsNullOrEmpty(text)&& companyPicturePath!=null)
                 {
+                    //Burada eklenmek istenilen resimler yeniden boyutlandırılarak, proje dizininden istenilen yere resmin kayıt edilmesi sağlanır
+                    //
                     int picWidth = settings.bannerPicture.Width;
                     int pichHeight = settings.bannerPicture.Height;
                     string newName = Path.GetFileNameWithoutExtension(companyPicturePath.FileName) + "-" + Guid.NewGuid() + Path.GetExtension(companyPicturePath.FileName);
@@ -58,12 +79,12 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
                     Session["bannerAlert"] = "";
                     if (result)
                     {
-                        Session["bannerAlert"] = "Banner Added Succesfully";
+                        Session["bannerAlert"] = "Banner başarıyla eklendi";
                         return RedirectToAction("Index", "banner", new { area = "AdminPanel" });
                     }
                     else
                     {
-                        Session["bannerAlert"] = "An error occurred while adding a banner!";
+                        Session["bannerAlert"] = "Banner eklenirken bir hata meydana geldi !";
 
                         return RedirectToAction("Index", "banner", new { area = "AdminPanel" });
                     }
@@ -71,7 +92,7 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
                
                 else
                 {
-                    Session["bannerAlert"] = "Please Fill in the Related Fields.";
+                    Session["bannerAlert"] = "Lütfen ilgili tüm alanları doldurun";
                     return RedirectToAction("Index", "banner", new { area = "AdminPanel" });
                 }
             }
@@ -85,7 +106,7 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
 
             
         }
-
+        //Banner silme servisi
         [HttpPost]
         public ActionResult bannerDelete(int id)
         {
@@ -105,17 +126,17 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
               
                     if (resultDeleteBanner)
                     {
-                        return Json(new { id = 1, message = "Banner is removed." });
+                        return Json(new { id = 1, message = "Banner silindi." });
                     }
                     else
                     {
-                        return Json(new { id = 0, message = "An error occurred while removing a banner !" });
+                        return Json(new { id = 0, message = "Banner silinirken bir hata meydana geldi !" });
                     }
 
                 }
                 else
                 {
-                    return Json(new { id = 0, message = "The Banner is not found!" });
+                    return Json(new { id = 0, message = "Silinmek istenen Banner bulunamadı" });
                 }
                
                 

@@ -34,7 +34,7 @@ namespace QuickOrder.WebMVC.Controllers
                 customerReviews = ctx.reviewBll.getAll().Count() > 0 ? ctx.reviewBll.getAll() : new List<reviews>(),
                 products = products,
                 services = ctx.serviceBll.getAll(),
-                about = ctx.companyInformationBll.getOne(2),
+                about = ctx.companyInformationBll.getOne(1)==null?new CompanyInformations(): ctx.companyInformationBll.getOne(1),
                 mainPageFood = main
 
             };
@@ -46,45 +46,9 @@ namespace QuickOrder.WebMVC.Controllers
         }
         public PartialViewResult footer()
         {
-            return PartialView(ctx.companyInformationBll.getOne(2));
+            return PartialView(ctx.companyInformationBll.getOne(1) == null ? new CompanyInformations() : ctx.companyInformationBll.getOne(1));
         }
-        public PartialViewResult bookTable()
-        {
-            
-            return PartialView();
-        }
-        [HttpPost]
-        public ActionResult bookTable(rezervations res)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
 
-                    ctx.rezervationBll.add(res);
-                    return Json(new { error = 1 });
-                }
-                else
-                {
-                    List<string> errorList = new List<string>();
-                    foreach (var modelError in ModelState.Values.SelectMany(x => x.Errors))
-                    {
-                        errorList.Add(modelError.ErrorMessage);
-
-                    }
-
-                    return Json(new { error = 0, list = errorList });
-                }
-            }
-            catch (Exception e)
-            {
-
-                return PartialView("_error", e.Message);
-            }
-
-
-
-        }
        
         public PartialViewResult header()
         {
@@ -98,7 +62,7 @@ namespace QuickOrder.WebMVC.Controllers
             {
                 Categories = ctx.categoryBll.getAll().ToList(),
                 dailyFoods = daily,
-                company= ctx.companyInformationBll.getOne(2)
+                company= ctx.companyInformationBll.getOne(1)==null?new CompanyInformations(): ctx.companyInformationBll.getOne(1)
             };
             return PartialView(hModel);
         }

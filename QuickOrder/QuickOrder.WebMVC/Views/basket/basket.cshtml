@@ -4,9 +4,9 @@
     @{       
 
         if (Model != null)
-        { <a href="#"><img src="/content/staticImages/icon-basket.png" alt=""> @Model.BasketItems.Count() ürün - $ @Model.cardTotalPrice </a> }
+        { <a href="#"><img src="/content/staticImages/icon-basket.png" alt=""> @Model.BasketItems.Count() ürün - ₺ @Model.cardTotalPrice </a> }
     else
-    {<a href="#"><img src="/content/staticImages/icon-basket.png" alt=""> 0 ürün - $ 0 </a> }
+    {<a href="#"><img src="/content/staticImages/icon-basket.png" alt=""> 0 ürün - ₺ 0 </a> }
     }
     <div class="cart-wrap">
         <div class="cart-blog" style="max-height:400px; overflow-y:scroll">
@@ -21,8 +21,8 @@
                     </div>
                     <div class="cart-item-right">
                         <h6>@item.products.name</h6>
-                        <span>$ @item.products.price</span>
-                        <span> (@item.count items)</span>
+                        <span>₺ @item.products.price</span>
+                        <span> (@item.count adet)</span>
                     </div>
                     <a href="javascript:void(0)" class="deleteProduct" data-id="@item.products.id"><span class="delete-icon"></span></a>
                 </div>
@@ -34,7 +34,7 @@
                     <h6>Ara Toplam :</h6>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6">
-                    <span>$ @(Model == null ? 0 : Model.cardTotalPrice) </span>
+                    <span>₺ @(Model == null ? 0 : Model.cardTotalPrice) </span>
                 </div>
             </div>
             <div class="cart-btn">

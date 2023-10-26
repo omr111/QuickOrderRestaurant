@@ -1,6 +1,8 @@
 ﻿@using QuickOrder.WebMVC.Models
 @model headerModel
 <header>
+    @if (Model!=null)
+    {
     <div class="header-part header-reduce sticky">
         <div class="header-top">
             <div class="container">
@@ -8,13 +10,19 @@
                     <div class="header-top-left">
                         <a href="#" class="top-cell">
                             <img src="/content/staticImages/fon.png" alt="">
-                            @foreach (var phone in Model.company.Phones)
+                            @if (Model != null && Model.company != null && Model.company.Phones != null)
                             {
-                                <span>@phone.phoneNumber</span>
-                                
+                                foreach (var phone in Model.company.Phones)
+                                {
+                                    <span>@phone.phoneNumber</span>
+
+                                }
                             }
                         </a>
-                        <a href="#" class="top-email"><span>@Model.company.email</span></a>
+                    
+                            <a href="#" class="top-email"><span>@Model.company.email</span></a>
+
+                       
                     </div>
                     <div class="header-top-right">
                         <div class="social-top">
@@ -27,13 +35,14 @@
                         @if (Request.IsAuthenticated)
                         {
                             <div class="language-menu">
-                                <a href="#" class="current-lang">My Account (@User.Identity.Name) <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                <a href="#" class="current-lang">Hesabım (@User.Identity.Name) <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                 <ul>
                                     <li><a href="/users/logout"><i class="fa fa-angle-right" aria-hidden="true"></i>Çıkış</a></li>
                                     @if (User.IsInRole("Moderator"))
-                                    {<li><a href="/AdminPanel/Home/Index"><i class="fa fa-angle-right" aria-hidden="true"></i>AdminPanel Giriş</a></li>
+                                    {
+                                        <li><a href="/AdminPanel/Home/Index"><i class="fa fa-angle-right" aria-hidden="true"></i>AdminPanel Giriş</a></li>
                                     }
-                                    </ul>
+                                </ul>
                             </div>
                         }
                         else
@@ -48,9 +57,9 @@
                                 </ul>
                             </div>
                         }
-                       
-                          
-                        
+
+
+
 
                     </div>
                 </div>
@@ -60,10 +69,8 @@
             <div class="container">
                 <div class="header-info">
                     <div class="header-info-inner">
-                        <div class="book-table header-collect book-md">
-                            <a href="#" data-toggle="modal" data-target="#booktable"><img src="/content/staticImages/icon-table.png" alt="">Rezervasyon</a>
-                        </div>
-                        @{ Html.RenderAction("basket","basket");}
+                        
+                        @{ Html.RenderAction("basket", "basket");}
                         <div class="search-part">
                             <a href="/"></a>
                             <div class="search-box">
@@ -82,10 +89,8 @@
                         <span class="bar-3"></span>
                     </a>
                 </div>
-                <div class="book-table header-collect book-sm">
-                    <a href="#" data-toggle="modal" data-target="#booktable"><img src="/content/staticImages/icon-table.png" alt="">Rezervasyon</a>
-                </div>
-                
+               
+
                 <div class="menu-main">
                     <ul>
                         <li class="has-child">
@@ -115,5 +120,7 @@
             </div>
         </div>
     </div>
+    }
+    
 </header>
 

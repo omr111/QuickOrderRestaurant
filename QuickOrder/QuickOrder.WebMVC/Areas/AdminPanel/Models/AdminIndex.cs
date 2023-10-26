@@ -13,9 +13,6 @@ namespace QuickOrder.WebMVC.Areas.Models
         public List<users> Users { get; set; }
         public List<users> managementTeam { get; set; }
         public List<Products> Products { get; set; }
-    
-        public List<rezervations> defaultReservations { get; set; }
-        public int newReservationCount { get; set; }
         
     }
 }

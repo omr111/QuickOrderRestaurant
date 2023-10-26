@@ -32,7 +32,7 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
             {
                 Categories cat;
                 cat = ctx.categoryBll.getOneByName(categoryName);
-                if (cat!=null)
+                if (cat==null)
                 {
                     cat= new Categories();
                     cat.categoryName = categoryName;

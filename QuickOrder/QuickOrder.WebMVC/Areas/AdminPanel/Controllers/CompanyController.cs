@@ -24,7 +24,7 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
         // GET: AdminPanel/Company
         public ActionResult Index()
         {
-            CompanyInformations company = ctx.companyInformationBll.getOne(2);
+            CompanyInformations company = ctx.companyInformationBll.getOne(1)==null? new CompanyInformations(): ctx.companyInformationBll.getOne(1);
 
 
             return View(company);
@@ -34,7 +34,7 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
         [HttpPost]
         public ActionResult companyEdit(CompanyInformations comInfo, HttpPostedFileBase companyLogo, HttpPostedFileBase companyPicturePath)
         {
-            CompanyInformations company = ctx.companyInformationBll.getOne(2);
+            CompanyInformations company = ctx.companyInformationBll.getOne(1);
 
 
             try
@@ -101,7 +101,7 @@ namespace QuickOrder.WebMVC.Areas.AdminPanel.Controllers
 
 
 
-                    bool result = ctx.companyInformationBll.add(company);
+                    bool result = ctx.companyInformationBll.update(company);
             
                    
                     if (result )

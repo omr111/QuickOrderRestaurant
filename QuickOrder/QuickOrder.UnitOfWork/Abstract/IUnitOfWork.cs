@@ -16,13 +16,13 @@ namespace QuickOrder.UnitOfWork.Abstract
         ICompanyInformationBll companyInformationBll { get; set; }
          IPhoneBll phoneBll { get; set; }
          IreviewBll reviewBll { get; set; }
-         IrezervationBll rezervationBll { get; set; }
          IroleBll roleBll { get; set; }
          IroleOfUserBll roleOfUserBll { get; set; }
          ISaleProductBll saleProductBll { get; set; }
          ISaleProductsDetailBll saleProductsDetailBll { get; set; }
          IserviceBll serviceBll { get; set; }
          IuserBll userBll { get; set; }
+        IPromotionBll promotionBll { get; set; }
  
         
 

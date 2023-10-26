@@ -1105,6 +1105,7 @@
     <Content Include="content\js\jquery.min.js" />
     <Content Include="content\js\script.js" />
     <Content Include="content\staticImages\404.png" />
+    <Content Include="content\staticImages\aksesuar-icon.png" />
     <Content Include="content\staticImages\arrow-black-left.png" />
     <Content Include="content\staticImages\arrow-black-right.png" />
     <Content Include="content\staticImages\arrow-left-active.png" />
@@ -1209,6 +1210,8 @@
     <Content Include="content\staticImages\img59.png" />
     <Content Include="content\staticImages\img60.png" />
     <Content Include="content\staticImages\img9.png" />
+    <Content Include="content\staticImages\koltuk-icon.png" />
+    <Content Include="content\staticImages\koltuk-takimi-icon.png" />
     <Content Include="content\staticImages\learn-arrow.png" />
     <Content Include="content\staticImages\line.png" />
     <Content Include="content\staticImages\location-icon.png" />
@@ -1247,8 +1250,10 @@
     <Content Include="content\staticImages\slider-arrow-right.png" />
     <Content Include="content\staticImages\slider1.jpg" />
     <Content Include="content\staticImages\star.png" />
+    <Content Include="content\staticImages\tv-icon.png" />
     <Content Include="content\staticImages\user.png" />
     <Content Include="content\staticImages\user1.png" />
+    <Content Include="content\staticImages\yatak-odasi-icon.png" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1266,7 +1271,7 @@
     <Compile Include="Areas\AdminPanel\Controllers\HomeController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\pictureController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\productController.cs" />
-    <Compile Include="Areas\AdminPanel\Controllers\reservationController.cs" />
+    <Compile Include="Areas\AdminPanel\Controllers\PromotionController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\reviewController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\RoleController.cs" />
     <Compile Include="Areas\AdminPanel\Controllers\roleOfUserController.cs" />
@@ -1660,7 +1665,6 @@
     <Content Include="Areas\AdminPanel\Views\product\Index.cshtml" />
     <Content Include="Areas\AdminPanel\Views\product\productAdd.cshtml" />
     <Content Include="Areas\AdminPanel\Views\product\productUpdate.cshtml" />
-    <Content Include="Areas\AdminPanel\Views\reservation\Index.cshtml" />
     <Content Include="Areas\AdminPanel\Views\review\Index.cshtml" />
     <Content Include="Areas\AdminPanel\Views\service\Index.cshtml" />
     <Content Include="Areas\AdminPanel\Views\service\serviceAdd.cshtml" />
@@ -1669,9 +1673,7 @@
     <Content Include="Areas\AdminPanel\Views\Shared\_adminLayout.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Shared\_fastReach.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Shared\_managementTeamWidget.cshtml" />
-    <Content Include="Areas\AdminPanel\Views\Shared\_reservationWidget.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Shared\_totalAccount.cshtml" />
-    <Content Include="Areas\AdminPanel\Views\Shared\_totalRezervationWidget.cshtml" />
     <Content Include="Areas\AdminPanel\Views\Shared\_productWidget.cshtml" />
     <Content Include="Areas\AdminPanel\Views\user\Index.cshtml" />
     <Content Include="Areas\AdminPanel\Views\user\managementTeam.cshtml" />
@@ -1735,6 +1737,9 @@
     <Content Include="Areas\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Areas\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Areas\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Areas\AdminPanel\Views\Promotion\Index.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Promotion\promotionAdd.cshtml" />
+    <Content Include="Areas\AdminPanel\Views\Promotion\promotionUpdate.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -1746,7 +1751,6 @@
     <Content Include="Views\Shared\_clientSays.cshtml" />
     <Content Include="Views\Shared\_featureList.cshtml" />
     <Content Include="Views\Home\footer.cshtml" />
-    <Content Include="Views\Home\bookTable.cshtml" />
     <Content Include="Views\basket\basket.cshtml" />
     <Content Include="Views\Shared\_gallery.cshtml" />
     <Content Include="Views\Home\header.cshtml" />

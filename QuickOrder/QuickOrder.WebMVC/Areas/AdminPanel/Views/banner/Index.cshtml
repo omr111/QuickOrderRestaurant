@@ -7,7 +7,7 @@
 @if (Session["bannerAlert"] != null)
 {
     string msg = (string)Session["bannerAlert"];
-    if (msg == "Banner Added Succesfully")
+    if (msg == "Banner başarıyla eklendi")
     {
 
         <div class="col-sm-12">
@@ -157,16 +157,19 @@
         }
 
         $(".bannerDelete").click(function () {
-
+            //seçilen id'yi alır
             var id = $("input:checked").val()
+            //ajax ile  banner controller içerisinde bannerDelete fonksiyonuna bu id gönderilir ve orada bu id'ye sahip banner silinir
             $.ajax({
                 url: "/AdminPanel/banner/bannerDelete",
                 data: { id: id },
                 type: "POST",
                 success: function (data) {
+                    //işlem başarılı olunca bir sonuç döndürür. O sonuca göre uyarı mesajları kullanıya gösterilir
                     if (data.id == 1) {
                         var msg = data.message;
                         $(".alert").html(ok(msg));
+                        //setTimeout fonksiyonu mesajın 5 saniye gösterilmesini daha sonra kayıp olması için bir süre tutma fonksiyonudur
                         setTimeout(function () { $('#alert').hide('slow'); }, 5000);
                         setTimeout(function () { document.location.replace("/AdminPanel/banner/Index") }, 2000);
                     } else {

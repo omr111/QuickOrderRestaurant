@@ -62,29 +62,64 @@
 
             </tbody>
         </table>
-        <div class="product-cart-detail">
+        <div class="product-cart-detail" style="margin-top:10px">
             <div class="cupon-part">
-                <input type="text" name="txt" placeholder="Cupon Code">
+                <input type="text" id="coupon" name="coupon" placeholder="Kupon Ekle">
             </div>
-            <a href="#" class="btn-medium btn-dark-coffee">Kupon Ekle</a>
+            <a  class="btn-medium btn-dark-coffee" onclick="AddCoupon()">Kupon Ekle</a>
           
         </div>
     </div>
     <div class="cart-total wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInDown;">
         <div class="cart-total-title">
-            <h5>CART TOTALS</h5>
-        </div>
-        <div class="product-cart-total">
-            <small>Total products</small>
-            <span>$ @(Model.cardTotalPrice)</span>
+            <h5>Sepet Toplamı</h5>
         </div>
 
-       
+        <div class="product-cart-total">
+            <small>Toplam ürün fiyatı</small>
+            <span>₺ @(Model.cardTotalPrice)</span>
+        </div>
+        <div class="product-cart-total">
+            <small>İndirim Oranı</small>
+            <span id="DiscountRate">0</span>
+        </div>
+        <input type="hidden" id="cardTotalPrice" value="@Model.cardTotalPrice"/>
         <div class="grand-total">
-            <h5>TOTAL <span>$ @(Model.cardTotalPrice )</span></h5>
+            <h5 >Toplam <span id="editcardTotalPrice">₺ @(Model.cardTotalPrice )</span></h5>
         </div>
         <div class="proceed-check">
-            <a href="/basket/checkout" class="btn-primary-gold btn-medium">Alışverişi Tamamla</a>
+            <a  class="btn-primary-gold btn-medium" onclick="checkOut()">Alışverişi Tamamla</a>
         </div>
     </div>
 </div>
+<script>
+    
+    function AddCoupon() {
+            var kupon = $('#coupon').val();
+            $.ajax({
+                url: "/basket/couponAdd",
+                data: { coupon: kupon },
+                success: function (res) {
+                    if (res==0) {
+                        alert("Kupon Bulunamadı");
+                    }
+                    document.getElementById('DiscountRate').innerHTML = res;
+                    var a = $('#cardTotalPrice').val();
+                    var result = parseFloat((parseFloat(a) - (parseFloat(a) * (parseFloat(res) / 100))));
+                    document.getElementById('editcardTotalPrice').innerHTML = '₺ ' + result;
+
+                }
+            });
+        };
+   function checkOut() {
+                var kupon = $('#coupon').val();
+                $.ajax({
+                    url: "/basket/couponAdd",
+                    data: { coupon: kupon },
+                    success: function (res) {
+                        document.location.replace('/basket/checkout?discountRate=' + res);
+
+                    }
+                });
+            }
+</script>

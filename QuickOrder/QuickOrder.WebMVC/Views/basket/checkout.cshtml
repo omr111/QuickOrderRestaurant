@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-7 col-sm-7 col-xs-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
                 <div class="shop-checkout-left">
-                    <h6>Eğer üye iseniz buradan <a href="/user/login">giriş</a>yapın</h6>
+                    <h6><a href="/users/login" style="color: #e4b95b">Giriş</a> Yapın</h6>
                     <form class="form-checkout" name="form" method="post" action="/basket/checkout">
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -59,17 +59,33 @@
                         <div class="shop-checkout-row">
                             @foreach (var item in Model.BasketItems)
                             {
-                                <p><span>@item.products.name</span> @item.count x  <small>$ @(item.products.price * item.count)</small></p>
+                                <p><span>@item.products.name</span> @item.count x  <small>₺ @(item.products.price * item.count)</small></p>
                             }
 
                         </div>
-                        
+
                         <div class="checkout-total">
                             <h6>Vergi <small>% 18</small></h6>
                         </div>
-                     
                         <div class="checkout-total">
-                            <h6>Sipariş Tutarı <small class="price-big">$@Model.cardTotalPrice</small></h6>
+                            <h6>İndirim Oranı <small>@Model.disCountRate</small></h6>
+                        </div>
+                        <div class="checkout-total">
+                            @if (Model.disCountRate > 0)
+                            {
+                                
+                                    double result = (double)((double)Model.cardTotalPrice - ((double)Model.cardTotalPrice * ((double)Model.disCountRate / 100)));
+                                
+                                <h6>
+                                    Sipariş Tutarı <small class="price-big">₺ @result </small>
+                                </h6>
+
+                                                                                                    }
+                                            else
+                                            {
+                                                <h6>Sipariş Tutarı <small class="price-big">₺ @Model.cardTotalPrice s</small></h6>
+
+                                            }
                         </div>
                     </div>
                     <div class="shop-checkout-box">
